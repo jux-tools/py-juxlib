@@ -9,7 +9,6 @@ This directory contains Architecture Decision Records (ADRs) for py-juxlib.
 | [ADR-0001](0001-record-architecture-decisions.md) | Record Architecture Decisions | HOW TO DECIDE | Accepted |
 | [ADR-0002](0002-adopt-development-best-practices.md) | Adopt Development Best Practices | HOW TO DEVELOP | Accepted |
 | [ADR-0003](0003-use-python-technology-stack.md) | Use Python Technology Stack | WHAT TECH | Accepted |
-| [ADR-0004](0004-operations-best-practices.md) | Operations Best Practices | HOW TO OPERATE | Accepted |
 
 ## Project-Specific ADRs
 

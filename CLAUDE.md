@@ -28,9 +28,9 @@ py-juxlib extracts and consolidates shared functionality from `pytest-jux` that 
 ## Current Development Status
 
 - **Current Sprint**: Sprint 1 (see `docs/sprints/sprint-01-plan.md`)
-- **Sprint Goal**: Extract core modules from pytest-jux and establish library foundation
-- **Status**: Not started
-- **Next Milestone**: v0.1.0
+- **Sprint Goal**: Extract foundational modules (errors, metadata, signing) from pytest-jux
+- **Status**: 🔄 In Progress (Day 1 of 14)
+- **Next Milestone**: v0.1.0 (2026-02-01)
 
 ## Foundational ADRs
 
@@ -41,7 +41,6 @@ Read these at the start of each AI session for complete context:
 | [ADR-0001](docs/adr/0001-record-architecture-decisions.md) | HOW TO DECIDE | Decision methodology |
 | [ADR-0002](docs/adr/0002-adopt-development-best-practices.md) | HOW TO DEVELOP | Development practices |
 | [ADR-0003](docs/adr/0003-use-python-technology-stack.md) | WHAT TECH | Technology stack |
-| [ADR-0004](docs/adr/0004-operations-best-practices.md) | HOW TO OPERATE | Operations practices |
 
 ## Development Practices
 
