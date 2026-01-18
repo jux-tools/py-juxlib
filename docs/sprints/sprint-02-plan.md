@@ -1,8 +1,8 @@
 # Sprint 2 Plan
 
 **Target Version**: v0.2.0
-**Duration**: 2026-02-01 - 2026-02-15 (2 weeks)
-**Status**: 📋 Planned
+**Duration**: 2026-01-18 - 2026-02-01 (2 weeks)
+**Status**: 🔄 In Progress
 
 ## Sprint Goal
 
@@ -114,7 +114,7 @@ Complete the configuration and storage modules to enable offline-capable test re
 
 ### External Dependencies
 - [x] pytest-jux source code available
-- [ ] Sprint 1 complete (errors module for exception handling)
+- [x] Sprint 1 complete (errors module for exception handling) - v0.1.0 released
 
 ### Internal Dependencies
 - Story 2.2 (storage) may use Story 2.1 (config) for default paths
@@ -138,6 +138,14 @@ Sprint is complete when:
 - [ ] Module docstrings complete
 - [ ] CHANGELOG.md updated
 - [ ] No critical bugs outstanding
+
+## Daily Standup Template
+
+### Day 1 (2026-01-18)
+- **Completed**: Sprint 2 planning activated
+- **In Progress**: Story 2.1 (Configuration), Story 2.2 (Storage)
+- **Blockers**: None
+- **AI Collaboration Notes**: AI will lead code extraction from pytest-jux
 
 ## Notes
 

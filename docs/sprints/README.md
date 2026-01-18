@@ -4,16 +4,16 @@ This directory contains sprint planning and retrospective documents for py-juxli
 
 ## Current Status
 
-- **Latest Release**: v0.1.0
-- **Completed Sprint**: Sprint 1
-- **Next Sprint**: Sprint 2 (planning)
+- **Active Sprint**: Sprint 2
+- **Target Version**: v0.2.0
+- **Sprint Goal**: Configuration and storage modules for offline-capable report management
 
 ## Sprint Index
 
 | Sprint | Version | Dates | Status | Plan | Backlog | Retrospective |
 |--------|---------|-------|--------|------|---------|---------------|
 | 1 | v0.1.0 | 2026-01-18 | ✅ Complete | [Plan](sprint-01-plan.md) | [Backlog](sprint-01-backlog.md) | [Retro](sprint-01-retrospective.md) |
-| 2 | v0.2.0 | TBD | 📋 Planned | [Plan](sprint-02-plan.md) | - | - |
+| 2 | v0.2.0 | 2026-01-18 to 2026-02-01 | 🔄 Active | [Plan](sprint-02-plan.md) | - | - |
 | 3 | v0.3.0 | TBD | 📋 Planned | [Plan](sprint-03-plan.md) | - | - |
 
 ## Roadmap Summary
