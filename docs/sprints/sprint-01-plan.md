@@ -2,7 +2,7 @@
 
 **Target Version**: v0.1.0
 **Duration**: 2026-01-18 - 2026-02-01 (2 weeks)
-**Status**: 🔄 In Progress
+**Status**: ✅ Complete
 
 ## Sprint Goal
 
@@ -131,7 +131,7 @@ Tasks not tied to specific user stories:
 
 - [x] **Task 1**: Create test fixtures directory structure (1 pt)
 - [x] **Task 2**: Add test key pair for signing tests (1 pt) - RSA and ECDSA keys/certs
-- [ ] **Task 3**: Update CHANGELOG.md with Sprint 1 changes (1 pt)
+- [x] **Task 3**: Update CHANGELOG.md with Sprint 1 changes (1 pt)
 
 ## AI Collaboration Strategy
 
@@ -169,14 +169,14 @@ Tasks not tied to specific user stories:
 ## Definition of Done
 
 Sprint is complete when:
-- [ ] All user stories meet acceptance criteria
-- [ ] All tests passing (unit)
-- [ ] Code reviewed (pre-commit hooks passing)
-- [ ] >85% test coverage
-- [ ] Type hints complete (mypy strict passing)
-- [ ] Module docstrings complete
-- [ ] CHANGELOG.md updated
-- [ ] No critical bugs outstanding
+- [x] All user stories meet acceptance criteria
+- [x] All tests passing (unit) - 122 tests
+- [x] Code reviewed (pre-commit hooks passing)
+- [x] >85% test coverage - 87% overall
+- [x] Type hints complete (mypy strict passing)
+- [x] Module docstrings complete
+- [x] CHANGELOG.md updated
+- [x] No critical bugs outstanding
 
 ## Daily Standup Template
 
