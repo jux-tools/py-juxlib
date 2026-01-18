@@ -191,9 +191,9 @@ Sprint is complete when:
 ## Notes
 
 **Sprint 1 Scope Decisions**:
-- API client (juxlib.api) deferred to Sprint 2
-- Configuration manager (juxlib.config) deferred to Sprint 2
-- Storage (juxlib.storage) deferred to Sprint 2
+- Configuration manager (juxlib.config) → Sprint 2
+- Storage (juxlib.storage) → Sprint 2
+- API client (juxlib.api) → Sprint 3
 - Focus on foundational modules that enable pytest-jux/behave-jux integration
 
 **Code Extraction Strategy**:

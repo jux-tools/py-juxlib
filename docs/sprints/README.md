@@ -13,6 +13,16 @@ This directory contains sprint planning and retrospective documents for py-juxli
 | Sprint | Version | Dates | Status | Plan | Retrospective |
 |--------|---------|-------|--------|------|---------------|
 | 1 | v0.1.0 | 2026-01-18 to 2026-02-01 | 🔄 Active | [Plan](sprint-01-plan.md) | - |
+| 2 | v0.2.0 | 2026-02-01 to 2026-02-15 | 📋 Planned | [Plan](sprint-02-plan.md) | - |
+| 3 | v0.3.0 | 2026-02-15 to 2026-03-01 | 📋 Planned | [Plan](sprint-03-plan.md) | - |
+
+## Roadmap Summary
+
+| Sprint | Focus | Modules |
+|--------|-------|---------|
+| 1 | Foundation | errors, metadata, signing |
+| 2 | Offline Support | config, storage |
+| 3 | Integration | api, pytest-jux migration, behave-jux integration |
 
 ## Sprint Workflow
 
