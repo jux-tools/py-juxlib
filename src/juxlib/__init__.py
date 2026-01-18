@@ -1,0 +1,40 @@
+# SPDX-License-Identifier: Apache-2.0
+# SPDX-FileCopyrightText: 2026 Georges Martin <jrjsmrtn@gmail.com>
+
+"""
+py-juxlib: Shared Python library for Jux tools ecosystem.
+
+This library provides common functionality for Jux client tools:
+
+- Environment metadata detection (Git, CI/CD, runtime)
+- XML digital signatures (XMLDSig signing and verification)
+- API client for Jux OpenAPI servers
+- Configuration management with multi-source loading
+- Local filesystem storage with offline queue
+- User-friendly error handling framework
+
+Example usage:
+
+    >>> from juxlib.metadata import capture_metadata
+    >>> metadata = capture_metadata()
+    >>> print(f"Project: {metadata.project_name}")
+
+    >>> from juxlib.signing import sign_xml, load_private_key
+    >>> key = load_private_key("~/.ssh/jux/dev-key.pem")
+    >>> signed_tree = sign_xml(tree, key)
+
+    >>> from juxlib.api import JuxAPIClient
+    >>> client = JuxAPIClient(api_url="https://jux.example.com")
+    >>> response = client.publish_report(signed_xml)
+"""
+
+__version__ = "0.1.0"
+__author__ = "Georges Martin"
+__email__ = "jrjsmrtn@gmail.com"
+
+# Public API will be populated as modules are implemented
+__all__ = [
+    "__version__",
+    "__author__",
+    "__email__",
+]
