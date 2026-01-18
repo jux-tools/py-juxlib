@@ -27,9 +27,8 @@ Example usage:
     >>> is_valid = verify_signature(signed_tree)
 """
 
-# Public API will be exported here once implemented
-# from .signer import sign_xml, load_private_key
-# from .verifier import verify_signature
-# from .canonicalizer import canonicalize_xml, compute_canonical_hash, load_xml
+# Public API: sign_xml, load_private_key, verify_signature,
+#             canonicalize_xml, compute_canonical_hash, load_xml
+# (exports added when modules are implemented)
 
 __all__: list[str] = []

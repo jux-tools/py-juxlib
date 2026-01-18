@@ -31,8 +31,7 @@ Example usage:
     >>> storage_mode = config.get("jux_storage_mode")  # Returns StorageMode enum
 """
 
-# Public API will be exported here once implemented
-# from .manager import ConfigurationManager
-# from .schema import ConfigSchema, StorageMode
+# Public API: ConfigurationManager, ConfigSchema, StorageMode
+# (exports added when modules are implemented)
 
 __all__: list[str] = []

@@ -29,8 +29,7 @@ Example usage:
     >>> print(f"Success rate: {response.test_run.success_rate}%")
 """
 
-# Public API will be exported here once implemented
-# from .client import JuxAPIClient
-# from .models import TestRun, PublishResponse
+# Public API: JuxAPIClient, TestRun, PublishResponse
+# (exports added when modules are implemented)
 
 __all__: list[str] = []

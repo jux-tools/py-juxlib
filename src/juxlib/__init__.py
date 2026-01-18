@@ -34,7 +34,7 @@ __email__ = "jrjsmrtn@gmail.com"
 
 # Public API will be populated as modules are implemented
 __all__ = [
-    "__version__",
     "__author__",
     "__email__",
+    "__version__",
 ]

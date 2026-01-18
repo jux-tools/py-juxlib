@@ -37,15 +37,7 @@ Example usage:
     ...     )
 """
 
-# Public API will be exported here once implemented
-# from .codes import ErrorCode
-# from .exceptions import (
-#     JuxError,
-#     FileNotFoundError,
-#     KeyNotFoundError,
-#     XMLParseError,
-#     ConfigurationError,
-#     APIError,
-# )
+# Public API: ErrorCode, JuxError, and specific exception classes
+# (exports added when modules are implemented)
 
 __all__: list[str] = []

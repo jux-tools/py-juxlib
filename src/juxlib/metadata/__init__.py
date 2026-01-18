@@ -21,8 +21,7 @@ Example usage:
     >>> print(f"Project: {metadata.project_name}")
 """
 
-# Public API will be exported here once implemented
-# from .models import EnvironmentMetadata
-# from .detection import capture_metadata
+# Public API: EnvironmentMetadata, capture_metadata
+# (exports added when modules are implemented)
 
 __all__: list[str] = []
