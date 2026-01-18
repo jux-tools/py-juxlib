@@ -13,9 +13,9 @@ Extract foundational modules from pytest-jux to establish py-juxlib as a working
 | Category | Points |
 |----------|--------|
 | Total Planned | 21 |
-| Completed | 13 |
+| Completed | 21 |
 | In Progress | 0 |
-| Remaining | 8 |
+| Remaining | 0 |
 
 ## User Stories
 
@@ -88,20 +88,20 @@ Extract foundational modules from pytest-jux to establish py-juxlib as a working
 
 ### Story 1.3: XML Signing and Canonicalization
 
-**Points**: 8 | **Priority**: High | **Status**: 📋 Planned
+**Points**: 8 | **Priority**: High | **Status**: ✅ Complete
 
 **User Story**:
 > As a test framework integrator, I want to sign JUnit XML reports with XMLDSig so that report authenticity can be verified by the Jux server.
 
 **Acceptance Criteria**:
-- [ ] load_xml() from file, string, or bytes
-- [ ] canonicalize_xml() using C14N algorithm
-- [ ] compute_canonical_hash() with configurable algorithm
-- [ ] load_private_key() from file, PEM string, or bytes
-- [ ] sign_xml() with automatic RSA/ECDSA detection
-- [ ] verify_signature() with embedded or external certificate
-- [ ] Support for RSA-SHA256 and ECDSA-SHA256
-- [ ] >85% test coverage with fixture XML files
+- [x] load_xml() from file, string, or bytes
+- [x] canonicalize_xml() using C14N algorithm
+- [x] compute_canonical_hash() with configurable algorithm
+- [x] load_private_key() from file, PEM string, or bytes
+- [x] sign_xml() with automatic RSA/ECDSA detection
+- [x] verify_signature() with embedded or external certificate
+- [x] Support for RSA-SHA256 and ECDSA-SHA256
+- [x] 87% test coverage with fixture XML files (47 tests)
 
 **Technical Notes**:
 - Extract from `pytest-jux/pytest_jux/signer.py` (155 lines)
@@ -129,8 +129,8 @@ Extract foundational modules from pytest-jux to establish py-juxlib as a working
 
 Tasks not tied to specific user stories:
 
-- [ ] **Task 1**: Create test fixtures directory structure (1 pt)
-- [ ] **Task 2**: Add test key pair for signing tests (1 pt)
+- [x] **Task 1**: Create test fixtures directory structure (1 pt)
+- [x] **Task 2**: Add test key pair for signing tests (1 pt) - RSA and ECDSA keys/certs
 - [ ] **Task 3**: Update CHANGELOG.md with Sprint 1 changes (1 pt)
 
 ## AI Collaboration Strategy
@@ -189,9 +189,9 @@ Sprint is complete when:
 ### Day 1 (continued)
 - **Completed**: Story 1.1 (Error Handling Framework - 38 tests, 88% coverage)
 - **Completed**: Story 1.2 (Environment Metadata Detection - 37 tests, 86% coverage)
-- **In Progress**: Story 1.3 (XML Signing)
+- **Completed**: Story 1.3 (XML Signing and Canonicalization - 47 tests, 87% coverage)
 - **Blockers**: None
-- **AI Collaboration Notes**: AI extracted and adapted code from pytest-jux, replaced pytest-specific fields with generic tool_versions dict
+- **AI Collaboration Notes**: AI extracted and adapted code from pytest-jux, replaced pytest-specific fields with generic tool_versions dict, resolved signxml X.509 certificate validation requirements
 
 ## Notes
 

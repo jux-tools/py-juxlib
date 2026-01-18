@@ -145,6 +145,8 @@ secrets.yaml
 secrets.yml
 *.p12
 *.pfx
+# Allow test fixture keys (self-signed test certs only)
+!tests/fixtures/*.pem
 
 # Claude Code local files
 CLAUDE.local.md

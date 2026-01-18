@@ -1,0 +1,4 @@
+# Test fixture keys - self-signed certificates for unit tests only
+# These are NOT production credentials
+tests/fixtures/test-ec-private.pem:private-key:1
+tests/fixtures/test-private.pem:private-key:1
