@@ -1,8 +1,7 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2026 Georges Martin <jrjsmrtn@gmail.com>
 
-"""
-Configuration management with multi-source loading.
+"""Configuration management with multi-source loading.
 
 This module provides a flexible configuration system that loads settings
 from multiple sources with clear precedence rules:
@@ -31,7 +30,24 @@ Example usage:
     >>> storage_mode = config.get("jux_storage_mode")  # Returns StorageMode enum
 """
 
-# Public API: ConfigurationManager, ConfigSchema, StorageMode
-# (exports added when modules are implemented)
+from .manager import (
+    ConfigurationManager,
+    ConfigValidationError,
+    get_default_config_path,
+    get_xdg_config_home,
+    get_xdg_data_home,
+)
+from .schema import ConfigSchema, StorageMode
 
-__all__: list[str] = []
+__all__ = [  # noqa: RUF022 - intentionally grouped by category
+    # Main classes
+    "ConfigurationManager",
+    "ConfigSchema",
+    "StorageMode",
+    # Exceptions
+    "ConfigValidationError",
+    # Utility functions
+    "get_default_config_path",
+    "get_xdg_config_home",
+    "get_xdg_data_home",
+]
