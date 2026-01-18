@@ -7,13 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-01-18
+
 ### Added
 
 - Initial project structure with Diátaxis documentation framework
 - Foundation ADRs (0001, 0002, 0003, 0004)
 - Sprint planning (Sprint 1, 2, 3)
-
-#### Sprint 1: Core Modules (v0.1.0)
 
 - **juxlib.errors** - User-friendly error handling framework
   - `ErrorCode` enum with categorized error codes (1xx-6xx)
@@ -41,4 +41,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Test fixtures with certificate generation script
   - 47 tests, 87% coverage
 
+### Technical Details
+
+- **Sprint**: 1
+- **Story Points**: 21
+- **Unit Tests**: 122 total
+- **Test Coverage**: 87%
+
 [Unreleased]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/jrjsmrtn/py-juxlib/releases/tag/v0.1.0
