@@ -1,27 +1,52 @@
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: 2026 Georges Martin <jrjsmrtn@gmail.com>
 
-"""
-Environment metadata detection for test execution context.
+"""Environment metadata detection module.
 
-This module provides functionality to capture comprehensive metadata about
-the test execution environment, including:
+This module provides comprehensive environment metadata capture for test
+reports and execution tracking. It detects:
+- System information (hostname, username, platform, Python version)
+- Git repository state (commit, branch, status, remote)
+- CI/CD provider details (provider name, build ID, build URL)
+- Project name (with multiple fallback strategies)
 
-- Git repository information (commit, branch, status, remote)
-- CI/CD platform detection (GitHub Actions, GitLab CI, Jenkins, etc.)
-- Runtime environment (hostname, platform, Python version)
-- Project identification (from git, pyproject.toml, or environment)
+The metadata is designed to be embedded in JUnit XML reports and signed
+with XMLDSig for integrity verification.
 
 Example usage:
 
     >>> from juxlib.metadata import capture_metadata
+    >>>
+    >>> # Basic capture
     >>> metadata = capture_metadata()
-    >>> print(f"Git commit: {metadata.git_commit}")
-    >>> print(f"CI provider: {metadata.ci_provider}")
-    >>> print(f"Project: {metadata.project_name}")
+    >>> print(f"Running on: {metadata.hostname}")
+    >>>
+    >>> # With tool versions
+    >>> import pytest
+    >>> metadata = capture_metadata(tool_versions={"pytest": pytest.__version__})
+    >>>
+    >>> # Convert to dict or JSON
+    >>> data = metadata.to_dict()
+    >>> json_str = metadata.to_json(indent=2)
 """
 
-# Public API: EnvironmentMetadata, capture_metadata
-# (exports added when modules are implemented)
+from .ci import CIInfo, detect_ci_provider, is_ci_environment
+from .detection import capture_metadata
+from .git import GitInfo, capture_git_info, is_git_repository
+from .models import EnvironmentMetadata
+from .project import detect_project_name
 
-__all__: list[str] = []
+__all__ = [  # noqa: RUF022 - intentionally grouped by category
+    # Main entry point
+    "capture_metadata",
+    # Data models
+    "EnvironmentMetadata",
+    "GitInfo",
+    "CIInfo",
+    # Detection functions
+    "detect_project_name",
+    "capture_git_info",
+    "is_git_repository",
+    "detect_ci_provider",
+    "is_ci_environment",
+]
