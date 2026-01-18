@@ -7,6 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **juxlib.config** - Configuration management with multi-source loading
+  - `ConfigSchema` with type definitions, defaults, and validation rules
+  - `StorageMode` enum (LOCAL, API, BOTH, CACHE)
+  - `ConfigurationManager` with get/set/validate methods
+  - Multi-source precedence: explicit > CLI > env vars > file > defaults
+  - Environment variable support (JUX_* prefix)
+  - INI file parsing with XDG-compliant locations
+  - TOML support via pyproject.toml [tool.jux] section
+  - Type coercion (bool, int, enum, path expansion)
+  - Source tracking for debugging
+  - Dependency validation between settings
+  - 51 tests, 90% coverage
+
+- **juxlib.storage** - Local filesystem storage with offline queue support
+  - `ReportStorage` class with full CRUD operations
+  - Platform-appropriate paths (macOS ~/Library, Linux XDG)
+  - Atomic writes using temp-then-rename pattern
+  - Offline queue: `queue_report()`, `list_queued_reports()`, `dequeue_report()`
+  - Storage statistics: count, size, oldest report
+  - Deduplication via canonical hash identifiers
+  - 55 tests, 86% coverage
+
+- **Integration tests** for config + storage modules (16 tests)
+
+- **New error types** in juxlib.errors:
+  - `StorageWriteError` for storage write failures
+  - `QueuedReportNotFoundError` for missing queued reports
+
 ## [0.1.0] - 2026-01-18
 
 ### Added
