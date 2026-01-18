@@ -27,11 +27,11 @@ py-juxlib extracts and consolidates shared functionality from `pytest-jux` that 
 
 ## Current Development Status
 
-- **Current Sprint**: Sprint 2 (see `docs/sprints/sprint-02-plan.md`)
-- **Sprint Goal**: Complete configuration and storage modules for offline-capable report management
-- **Status**: 🔄 In Progress
-- **Latest Release**: v0.1.0
-- **Next Milestone**: v0.2.0
+- **Current Sprint**: Sprint 3 (see `docs/sprints/sprint-03-plan.md`)
+- **Sprint Goal**: API client and pytest-jux/behave-jux integration
+- **Status**: 📋 Planning
+- **Latest Release**: v0.2.0
+- **Next Milestone**: v0.3.0
 
 ## Foundational ADRs
 

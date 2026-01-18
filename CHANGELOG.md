@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-01-18
+
 ### Added
 
 - **juxlib.config** - Configuration management with multi-source loading
@@ -36,6 +38,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **New error types** in juxlib.errors:
   - `StorageWriteError` for storage write failures
   - `QueuedReportNotFoundError` for missing queued reports
+
+### Technical Details
+
+- **Sprint**: 2
+- **Story Points**: 19
+- **Unit Tests**: 122 new (247 total)
+- **Integration Tests**: 16 new
+- **Test Coverage**: 86-90%
 
 ## [0.1.0] - 2026-01-18
 
@@ -78,5 +88,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Unit Tests**: 122 total
 - **Test Coverage**: 87%
 
-[Unreleased]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/jrjsmrtn/py-juxlib/releases/tag/v0.1.0
