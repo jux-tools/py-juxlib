@@ -57,8 +57,10 @@ from .exceptions import (
     JuxError,
     KeyInvalidFormatError,
     KeyNotFoundError,
+    QueuedReportNotFoundError,
     ReportNotFoundError,
     StorageNotFoundError,
+    StorageWriteError,
     XMLParseError,
     XMLSignatureInvalidError,
     XMLSignatureMissingError,
@@ -88,7 +90,9 @@ __all__ = [  # noqa: RUF022 - intentionally grouped by category
     "ConfigInvalidValueError",
     # Storage errors (5xx)
     "StorageNotFoundError",
+    "StorageWriteError",
     "ReportNotFoundError",
+    "QueuedReportNotFoundError",
     # API errors (6xx)
     "APIConnectionError",
     "APIAuthenticationError",

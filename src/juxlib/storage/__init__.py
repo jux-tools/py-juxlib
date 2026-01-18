@@ -38,7 +38,9 @@ Example usage:
     ...     storage.dequeue_report(hash)
 """
 
-# Public API: ReportStorage, get_default_storage_path
-# (exports added when modules are implemented)
+from .filesystem import ReportStorage, get_default_storage_path
 
-__all__: list[str] = []
+__all__ = [
+    "ReportStorage",
+    "get_default_storage_path",
+]

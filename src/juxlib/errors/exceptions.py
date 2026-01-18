@@ -512,6 +512,54 @@ class ReportNotFoundError(JuxError):
         )
 
 
+class QueuedReportNotFoundError(JuxError):
+    """Queued report not found in storage."""
+
+    def __init__(self, report_hash: str) -> None:
+        """Initialize queued report not found error.
+
+        Args:
+            report_hash: Canonical hash of missing queued report
+        """
+        self.report_hash = report_hash
+
+        super().__init__(
+            message="Queued report not found in storage",
+            error_code=ErrorCode.REPORT_QUEUED_NOT_FOUND,
+            suggestions=[
+                "Check the report hash is correct",
+                "List queued reports to verify availability",
+                "The report may have already been dequeued",
+            ],
+            details=f"Hash: {report_hash}",
+        )
+
+
+class StorageWriteError(JuxError):
+    """Storage write operation failed."""
+
+    def __init__(self, path: Path | str, reason: str) -> None:
+        """Initialize storage write error.
+
+        Args:
+            path: Path to file that failed to write
+            reason: Reason for write failure
+        """
+        self.path = Path(path)
+        self.reason = reason
+
+        super().__init__(
+            message="Failed to write to storage",
+            error_code=ErrorCode.STORAGE_WRITE_ERROR,
+            suggestions=[
+                "Check disk space availability",
+                "Verify write permissions to storage directory",
+                "Ensure storage directory exists",
+            ],
+            details=f"Path: {self.path}\nReason: {reason}",
+        )
+
+
 # =============================================================================
 # API errors (6xx)
 # =============================================================================
