@@ -12,32 +12,35 @@ Complete the API client module and validate full integration with pytest-jux and
 
 | Category | Points |
 |----------|--------|
-| Total Planned | 18 |
-| Completed | 0 |
+| Total Planned | 13 |
+| Completed | 8 |
+| Moved | 5 |
 | In Progress | 0 |
-| Remaining | 18 |
+| Remaining | 5 |
+
+**Note**: Story 3.2 (5 pts) moved to pytest-jux Sprint 9.
 
 ## User Stories
 
 ### Story 3.1: Jux API Client
 
-**Points**: 8 | **Priority**: High | **Status**: 📋 Planned
+**Points**: 8 | **Priority**: High | **Status**: ✅ Completed
 
 **User Story**:
 > As a library consumer, I want an HTTP client for Jux servers so that signed reports can be published with proper authentication and retry handling.
 
 **Acceptance Criteria**:
-- [ ] JuxAPIClient class with configurable base URL and timeout
-- [ ] Bearer token authentication for remote servers
-- [ ] Localhost bypass (no auth for 127.0.0.1, ::1, localhost)
-- [ ] publish_report() method accepting signed XML string
-- [ ] Exponential backoff retry (1s, 2s, 4s) on server errors
-- [ ] Automatic retry on 500, 502, 503, 504 errors
-- [ ] Configurable max_retries (default 3)
-- [ ] Pydantic models: TestRun, PublishResponse
-- [ ] Connection pooling with session management
-- [ ] Enhanced error messages with server response details
-- [ ] >85% test coverage with mocked responses
+- [x] JuxAPIClient class with configurable base URL and timeout
+- [x] Bearer token authentication for remote servers
+- [x] Localhost bypass (no auth for 127.0.0.1, ::1, localhost)
+- [x] publish_report() method accepting signed XML string
+- [x] Exponential backoff retry (1s, 2s, 4s) on server errors
+- [x] Automatic retry on 500, 502, 503, 504 errors
+- [x] Configurable max_retries (default 3)
+- [x] Pydantic models: TestRun, PublishResponse
+- [x] Connection pooling with session management
+- [x] Enhanced error messages with server response details
+- [x] >85% test coverage with mocked responses (98% achieved)
 
 **Technical Notes**:
 - Extract from `pytest-jux/pytest_jux/api_client.py` (190 lines)
@@ -58,28 +61,10 @@ Complete the API client module and validate full integration with pytest-jux and
 
 ### Story 3.2: pytest-jux Integration
 
-**Points**: 5 | **Priority**: High | **Status**: 📋 Planned
+**Points**: 5 | **Priority**: High | **Status**: ➡️ Moved
 
-**User Story**:
-> As a pytest-jux maintainer, I want to migrate pytest-jux to use py-juxlib so that code duplication is eliminated.
-
-**Acceptance Criteria**:
-- [ ] pytest-jux imports juxlib modules instead of local implementations
-- [ ] All existing pytest-jux tests pass
-- [ ] No regression in pytest-jux functionality
-- [ ] pytest-jux version bumped with juxlib dependency
-- [ ] Migration documented in pytest-jux CHANGELOG
-
-**Technical Notes**:
-- Update pytest-jux pyproject.toml to depend on py-juxlib
-- Replace imports: `from pytest_jux.metadata import ...` → `from juxlib.metadata import ...`
-- Verify CLI commands still work
-- Run full pytest-jux test suite
-
-**Files to Modify** (in pytest-jux):
-- `pyproject.toml` (add juxlib dependency)
-- `pytest_jux/plugin.py` (update imports)
-- `pytest_jux/commands/*.py` (update imports)
+> **NOTE**: This story has been moved to pytest-jux Sprint 9 (`pytest-jux/docs/sprints/sprint-09-juxlib-migration.md`).
+> The migration is better managed as a pytest-jux sprint since it primarily involves changes to that project.
 
 ---
 
