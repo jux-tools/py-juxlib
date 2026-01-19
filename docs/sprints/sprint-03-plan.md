@@ -12,13 +12,15 @@ Complete the API client module and validate full integration with pytest-jux and
 
 | Category | Points |
 |----------|--------|
-| Total Planned | 13 |
+| Total Planned | 8 |
 | Completed | 8 |
-| Moved | 5 |
+| Moved | 10 |
 | In Progress | 0 |
-| Remaining | 5 |
+| Remaining | 0 |
 
-**Note**: Story 3.2 (5 pts) moved to pytest-jux Sprint 9.
+**Note**:
+- Story 3.2 (5 pts) moved to pytest-jux Sprint 9
+- Story 3.3 (5 pts) moved to behave-jux Sprint 5
 
 ## User Stories
 
@@ -70,28 +72,10 @@ Complete the API client module and validate full integration with pytest-jux and
 
 ### Story 3.3: behave-jux Integration
 
-**Points**: 5 | **Priority**: High | **Status**: 📋 Planned
+**Points**: 5 | **Priority**: High | **Status**: ➡️ Moved
 
-**User Story**:
-> As a behave-jux maintainer, I want to integrate py-juxlib so that behave-jux gains signing and publishing capabilities.
-
-**Acceptance Criteria**:
-- [ ] behave-jux imports juxlib.metadata for Git/CI detection
-- [ ] behave-jux can optionally sign reports using juxlib.signing
-- [ ] behave-jux can optionally publish reports using juxlib.api
-- [ ] Existing behave-jux tests pass
-- [ ] New integration tests for signing/publishing
-- [ ] behave-jux version bumped with juxlib dependency
-
-**Technical Notes**:
-- Replace local Git/CI detection with juxlib.metadata
-- Add optional signing configuration
-- Add optional publishing configuration
-- Maintain backward compatibility (signing/publishing off by default)
-
-**Files to Modify** (in behave-jux):
-- `pyproject.toml` (add juxlib dependency)
-- `src/behave_jux/reporter.py` (update imports, add signing/publishing)
+> **NOTE**: This story has been moved to behave-jux Sprint 5 (`behave-jux/docs/sprints/sprint-5-juxlib-integration.md`).
+> The integration is better managed as a behave-jux sprint since it primarily involves changes to that project.
 
 ---
 
