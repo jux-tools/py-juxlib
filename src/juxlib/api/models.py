@@ -90,21 +90,3 @@ class PublishResponse(BaseModel):
     error_count: int
     skipped_count: int
     success_rate: float | None = None
-
-    @property
-    def test_run(self) -> "TestRunRef":
-        """Backward compatibility: provides test_run.id access pattern.
-
-        Returns:
-            A minimal object with id attribute for backward compatibility.
-        """
-        return TestRunRef(id=self.test_run_id)
-
-
-class TestRunRef(BaseModel):
-    """Minimal test run reference for backward compatibility.
-
-    Provides .id access pattern for code that expects response.test_run.id.
-    """
-
-    id: str

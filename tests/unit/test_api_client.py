@@ -95,8 +95,6 @@ class TestPublishResponseModel:
         assert response.error_count == 0
         assert response.skipped_count == 0
         assert response.success_rate == 100.0
-        # Backward compatibility
-        assert response.test_run.id == "550e8400-e29b-41d4-a716-446655440000"
 
 
 class TestJuxAPIClient:
@@ -234,8 +232,6 @@ class TestJuxAPIClient:
         assert response.error_count == 1
         assert response.skipped_count == 0
         assert response.success_rate == 70.0
-        # Backward compatibility
-        assert response.test_run.id == "550e8400-e29b-41d4-a716-446655440000"
 
         # Verify request
         assert len(responses.calls) == 1
@@ -267,7 +263,7 @@ class TestJuxAPIClient:
 
         response = authenticated_client.publish_report(signed_xml)
 
-        assert response.test_run.id == "550e8400-e29b-41d4-a716-446655440000"
+        assert response.test_run_id == "550e8400-e29b-41d4-a716-446655440000"
         # Verify Bearer token sent
         assert (
             responses.calls[0].request.headers["Authorization"]
@@ -375,7 +371,7 @@ class TestJuxAPIClient:
 
         # Should succeed after retries
         response = client.publish_report(signed_xml)
-        assert response.test_run.id == "550e8400-e29b-41d4-a716-446655440000"
+        assert response.test_run_id == "550e8400-e29b-41d4-a716-446655440000"
         # Verify retry happened (3 requests total)
         assert len(responses.calls) == 3
 

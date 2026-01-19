@@ -72,8 +72,8 @@ client = JuxAPIClient(
 with open("junit-report-signed.xml") as f:
     response = client.publish_report(f.read())
 
-print(f"Test run ID: {response.test_run.id}")
-print(f"Success rate: {response.test_run.success_rate}%")
+print(f"Test run ID: {response.test_run_id}")
+print(f"Success rate: {response.success_rate}%")
 ```
 
 ## Documentation

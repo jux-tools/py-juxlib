@@ -38,7 +38,7 @@ class JuxAPIClient:
         ...     bearer_token="your-api-token"
         ... )
         >>> response = client.publish_report(signed_xml)
-        >>> print(response.test_run.id)
+        >>> print(response.test_run_id)
         550e8400-e29b-41d4-a716-446655440000
 
     Localhost Example (no auth):
@@ -114,8 +114,8 @@ class JuxAPIClient:
 
         Example:
             >>> response = client.publish_report(signed_xml)
-            >>> print(f"Test run created: {response.test_run.id}")
-            >>> print(f"Success rate: {response.test_run.success_rate}%")
+            >>> print(f"Test run created: {response.test_run_id}")
+            >>> print(f"Success rate: {response.success_rate}%")
         """
         try:
             response = self.session.post(
