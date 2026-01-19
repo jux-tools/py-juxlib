@@ -10,7 +10,7 @@ def test_version_exists() -> None:
     """Verify package version is defined."""
     assert hasattr(juxlib, "__version__")
     assert isinstance(juxlib.__version__, str)
-    assert juxlib.__version__ == "0.1.0"
+    assert juxlib.__version__ == "0.2.0"
 
 
 def test_author_exists() -> None:

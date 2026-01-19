@@ -11,74 +11,100 @@ from pydantic import BaseModel
 
 
 class TestRun(BaseModel):
-    """Test run details from Jux API v1.0.0.
+    """Test run summary from Jux API v1.0.0 query endpoints.
 
-    Represents the test run data returned by the /junit/submit endpoint.
+    Represents the test run data returned by /test_runs endpoints.
 
     Attributes:
-        id: UUID of the created test run
-        status: Test run status (e.g., "completed")
-        time: Test run duration in seconds (nullable)
-        errors: Number of tests with errors
-        branch: Git branch name (nullable)
+        id: UUID of the test run
         project: Project name
-        failures: Number of failed tests
-        skipped: Number of skipped tests
-        success_rate: Success rate percentage (0-100)
+        branch: Git branch name (nullable)
         commit_sha: Git commit SHA (nullable)
         total_tests: Total number of tests in the run
-        created_at: ISO 8601 timestamp of test run creation
+        failures: Number of failed tests
+        errors: Number of tests with errors
+        skipped: Number of skipped tests
+        success_rate: Success rate percentage (0-100)
+        inserted_at: ISO 8601 timestamp of test run creation
 
     Example:
         >>> test_run = TestRun(
         ...     id="550e8400-e29b-41d4-a716-446655440000",
-        ...     status="completed",
-        ...     errors=0,
         ...     project="my-app",
+        ...     total_tests=30,
         ...     failures=2,
+        ...     errors=0,
         ...     skipped=1,
         ...     success_rate=90.0,
-        ...     total_tests=30,
-        ...     created_at="2026-01-08T12:00:00.000000Z"
+        ...     inserted_at="2026-01-08T12:00:00.000000Z"
         ... )
         >>> print(test_run.success_rate)
         90.0
     """
 
     id: str
-    status: str
-    time: float | None = None
-    errors: int
-    branch: str | None = None
     project: str
-    failures: int
-    skipped: int
-    success_rate: float
+    branch: str | None = None
     commit_sha: str | None = None
     total_tests: int
-    created_at: str
+    failures: int
+    errors: int
+    skipped: int
+    success_rate: float
+    inserted_at: str
+    tags: list[str] | None = None
 
 
 class PublishResponse(BaseModel):
-    """Response from Jux API v1.0.0 /junit/submit endpoint.
+    """Response from Jux API v1.0.0 /junit/submit endpoint (jux-openapi SubmitResponse).
 
     Represents the complete response when publishing a JUnit XML report.
 
     Attributes:
+        test_run_id: UUID of the created test run
         message: Human-readable success message
-        status: Response status (e.g., "success")
-        test_run: Nested test run details
+        test_count: Total number of tests in the run
+        failure_count: Number of failed tests
+        error_count: Number of tests with errors
+        skipped_count: Number of skipped tests
+        success_rate: Success rate percentage (0-100, optional)
 
     Example:
         >>> response = PublishResponse(
-        ...     message="Test report submitted successfully",
-        ...     status="success",
-        ...     test_run=TestRun(...)
+        ...     test_run_id="550e8400-e29b-41d4-a716-446655440000",
+        ...     message="Test results submitted successfully",
+        ...     test_count=30,
+        ...     failure_count=2,
+        ...     error_count=0,
+        ...     skipped_count=1,
+        ...     success_rate=90.0,
         ... )
-        >>> print(response.test_run.id)
+        >>> print(response.test_run_id)
         550e8400-e29b-41d4-a716-446655440000
     """
 
+    test_run_id: str
     message: str
-    status: str
-    test_run: TestRun
+    test_count: int
+    failure_count: int
+    error_count: int
+    skipped_count: int
+    success_rate: float | None = None
+
+    @property
+    def test_run(self) -> "TestRunRef":
+        """Backward compatibility: provides test_run.id access pattern.
+
+        Returns:
+            A minimal object with id attribute for backward compatibility.
+        """
+        return TestRunRef(id=self.test_run_id)
+
+
+class TestRunRef(BaseModel):
+    """Minimal test run reference for backward compatibility.
+
+    Provides .id access pattern for code that expects response.test_run.id.
+    """
+
+    id: str

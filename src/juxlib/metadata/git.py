@@ -21,12 +21,14 @@ class GitInfo:
     Attributes:
         commit: Full commit hash (40 characters)
         branch: Current branch name
+        author: Commit author in "Name <email>" format
         status: "clean" or "dirty" indicating working tree state
         remote: Remote URL (sanitized to remove credentials)
     """
 
     commit: str | None = None
     branch: str | None = None
+    author: str | None = None
     status: str | None = None
     remote: str | None = None
 
@@ -81,6 +83,15 @@ def get_branch_name() -> str | None:
         Branch name or None if not in a repository or detached HEAD
     """
     return run_git_command(["rev-parse", "--abbrev-ref", "HEAD"])
+
+
+def get_commit_author() -> str | None:
+    """Get the author of the HEAD commit.
+
+    Returns:
+        Author in "Name <email>" format, or None if not in a repository
+    """
+    return run_git_command(["log", "-1", "--format=%an <%ae>"])
 
 
 def get_working_tree_status() -> str | None:
@@ -146,6 +157,7 @@ def capture_git_info(remote_names: list[str] | None = None) -> GitInfo:
     return GitInfo(
         commit=get_commit_hash(),
         branch=get_branch_name(),
+        author=get_commit_author(),
         status=get_working_tree_status(),
         remote=get_remote_url(remote_names),
     )

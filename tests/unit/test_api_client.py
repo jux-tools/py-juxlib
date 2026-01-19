@@ -15,91 +15,87 @@ from juxlib.api import JuxAPIClient, PublishResponse, TestRun
 
 
 class TestTestRunModel:
-    """Tests for TestRun Pydantic model."""
+    """Tests for TestRun Pydantic model (jux-openapi query response format)."""
 
     def test_test_run_required_fields(self) -> None:
         """TestRun should require all mandatory fields."""
         test_run = TestRun(
             id="550e8400-e29b-41d4-a716-446655440000",
-            status="completed",
-            errors=1,
             project="my-app",
+            total_tests=10,
             failures=2,
+            errors=1,
             skipped=0,
             success_rate=70.0,
-            total_tests=10,
-            created_at="2026-01-08T12:00:00.000000Z",
+            inserted_at="2026-01-08T12:00:00.000000Z",
         )
         assert test_run.id == "550e8400-e29b-41d4-a716-446655440000"
-        assert test_run.status == "completed"
-        assert test_run.errors == 1
         assert test_run.project == "my-app"
+        assert test_run.total_tests == 10
         assert test_run.failures == 2
+        assert test_run.errors == 1
         assert test_run.skipped == 0
         assert test_run.success_rate == 70.0
-        assert test_run.total_tests == 10
+        assert test_run.inserted_at == "2026-01-08T12:00:00.000000Z"
 
     def test_test_run_optional_fields(self) -> None:
         """TestRun should support optional fields with None defaults."""
         test_run = TestRun(
             id="550e8400-e29b-41d4-a716-446655440000",
-            status="completed",
-            errors=0,
             project="my-app",
+            total_tests=10,
             failures=0,
+            errors=0,
             skipped=0,
             success_rate=100.0,
-            total_tests=10,
-            created_at="2026-01-08T12:00:00.000000Z",
+            inserted_at="2026-01-08T12:00:00.000000Z",
         )
-        assert test_run.time is None
         assert test_run.branch is None
         assert test_run.commit_sha is None
+        assert test_run.tags is None
 
     def test_test_run_with_optional_fields(self) -> None:
         """TestRun should accept optional fields when provided."""
         test_run = TestRun(
             id="550e8400-e29b-41d4-a716-446655440000",
-            status="completed",
-            time=5.5,
-            errors=0,
-            branch="main",
             project="my-app",
-            failures=0,
-            skipped=0,
-            success_rate=100.0,
+            branch="main",
             commit_sha="abc123def456",
             total_tests=10,
-            created_at="2026-01-08T12:00:00.000000Z",
+            failures=0,
+            errors=0,
+            skipped=0,
+            success_rate=100.0,
+            inserted_at="2026-01-08T12:00:00.000000Z",
+            tags=["ci", "nightly"],
         )
-        assert test_run.time == 5.5
         assert test_run.branch == "main"
         assert test_run.commit_sha == "abc123def456"
+        assert test_run.tags == ["ci", "nightly"]
 
 
 class TestPublishResponseModel:
-    """Tests for PublishResponse Pydantic model."""
+    """Tests for PublishResponse Pydantic model (jux-openapi SubmitResponse format)."""
 
     def test_publish_response_structure(self) -> None:
-        """PublishResponse should contain message, status, and test_run."""
-        test_run = TestRun(
-            id="550e8400-e29b-41d4-a716-446655440000",
-            status="completed",
-            errors=0,
-            project="my-app",
-            failures=0,
-            skipped=0,
-            success_rate=100.0,
-            total_tests=10,
-            created_at="2026-01-08T12:00:00.000000Z",
-        )
+        """PublishResponse should match jux-openapi SubmitResponse schema."""
         response = PublishResponse(
+            test_run_id="550e8400-e29b-41d4-a716-446655440000",
             message="Test report submitted successfully",
-            status="success",
-            test_run=test_run,
+            test_count=10,
+            failure_count=0,
+            error_count=0,
+            skipped_count=0,
+            success_rate=100.0,
         )
+        assert response.test_run_id == "550e8400-e29b-41d4-a716-446655440000"
         assert response.message == "Test report submitted successfully"
-        assert response.status == "success"
+        assert response.test_count == 10
+        assert response.failure_count == 0
+        assert response.error_count == 0
+        assert response.skipped_count == 0
+        assert response.success_rate == 100.0
+        # Backward compatibility
         assert response.test_run.id == "550e8400-e29b-41d4-a716-446655440000"
 
 
@@ -211,26 +207,17 @@ class TestJuxAPIClient:
         self, client: JuxAPIClient, signed_xml: str
     ) -> None:
         """Test successful report publishing (201 Created)."""
-        # Mock API response (Jux API v1.0.0 format)
+        # Mock API response (jux-openapi SubmitResponse format)
         responses.post(
             "http://localhost:4000/api/v1/junit/submit",
             json={
+                "test_run_id": "550e8400-e29b-41d4-a716-446655440000",
                 "message": "Test report submitted successfully",
-                "status": "success",
-                "test_run": {
-                    "id": "550e8400-e29b-41d4-a716-446655440000",
-                    "status": "completed",
-                    "time": 5.5,
-                    "errors": 1,
-                    "branch": "main",
-                    "project": "my-application",
-                    "failures": 2,
-                    "skipped": 0,
-                    "success_rate": 70.0,
-                    "commit_sha": "abc123def456",
-                    "total_tests": 10,
-                    "created_at": "2026-01-08T00:00:00.000000Z",
-                },
+                "test_count": 10,
+                "failure_count": 2,
+                "error_count": 1,
+                "skipped_count": 0,
+                "success_rate": 70.0,
             },
             status=201,
         )
@@ -240,16 +227,15 @@ class TestJuxAPIClient:
 
         # Verify response
         assert isinstance(response, PublishResponse)
+        assert response.test_run_id == "550e8400-e29b-41d4-a716-446655440000"
         assert response.message == "Test report submitted successfully"
-        assert response.status == "success"
+        assert response.test_count == 10
+        assert response.failure_count == 2
+        assert response.error_count == 1
+        assert response.skipped_count == 0
+        assert response.success_rate == 70.0
+        # Backward compatibility
         assert response.test_run.id == "550e8400-e29b-41d4-a716-446655440000"
-        assert response.test_run.total_tests == 10
-        assert response.test_run.failures == 2
-        assert response.test_run.errors == 1
-        assert response.test_run.skipped == 0
-        assert response.test_run.success_rate == 70.0
-        assert response.test_run.project == "my-application"
-        assert response.test_run.branch == "main"
 
         # Verify request
         assert len(responses.calls) == 1
@@ -268,22 +254,13 @@ class TestJuxAPIClient:
         responses.post(
             "http://localhost:4000/api/v1/junit/submit",
             json={
+                "test_run_id": "550e8400-e29b-41d4-a716-446655440000",
                 "message": "Test report submitted successfully",
-                "status": "success",
-                "test_run": {
-                    "id": "550e8400-e29b-41d4-a716-446655440000",
-                    "status": "completed",
-                    "time": 5.5,
-                    "errors": 1,
-                    "branch": "main",
-                    "project": "my-application",
-                    "failures": 2,
-                    "skipped": 0,
-                    "success_rate": 70.0,
-                    "commit_sha": None,
-                    "total_tests": 10,
-                    "created_at": "2026-01-08T00:00:00.000000Z",
-                },
+                "test_count": 10,
+                "failure_count": 2,
+                "error_count": 1,
+                "skipped_count": 0,
+                "success_rate": 70.0,
             },
             status=201,
         )
@@ -385,22 +362,13 @@ class TestJuxAPIClient:
         responses.post(
             "http://localhost:4000/api/v1/junit/submit",
             json={
+                "test_run_id": "550e8400-e29b-41d4-a716-446655440000",
                 "message": "Test report submitted successfully",
-                "status": "success",
-                "test_run": {
-                    "id": "550e8400-e29b-41d4-a716-446655440000",
-                    "status": "completed",
-                    "time": None,
-                    "errors": 0,
-                    "branch": "main",
-                    "project": "my-application",
-                    "failures": 0,
-                    "skipped": 0,
-                    "success_rate": 100.0,
-                    "commit_sha": None,
-                    "total_tests": 10,
-                    "created_at": "2026-01-08T00:00:00.000000Z",
-                },
+                "test_count": 10,
+                "failure_count": 0,
+                "error_count": 0,
+                "skipped_count": 0,
+                "success_rate": 100.0,
             },
             status=201,
         )
@@ -495,28 +463,18 @@ class TestJuxAPIClient:
         responses.post(
             "http://localhost:4000/api/v1/junit/submit",
             json={
+                "test_run_id": "550e8400-e29b-41d4-a716-446655440000",
                 "message": "Test report submitted successfully",
-                "status": "success",
-                "test_run": {
-                    "id": "550e8400-e29b-41d4-a716-446655440000",
-                    "status": "completed",
-                    "time": None,
-                    "errors": 0,
-                    "branch": None,
-                    "project": "my-application",
-                    "failures": 0,
-                    "skipped": 0,
-                    "success_rate": 100.0,
-                    "commit_sha": None,
-                    "total_tests": 10,
-                    "created_at": "2026-01-08T00:00:00.000000Z",
-                },
+                "test_count": 10,
+                "failure_count": 0,
+                "error_count": 0,
+                "skipped_count": 0,
+                "success_rate": None,  # Optional field can be null
             },
             status=201,
         )
 
         response = client.publish_report(signed_xml)
 
-        assert response.test_run.time is None
-        assert response.test_run.branch is None
-        assert response.test_run.commit_sha is None
+        assert response.test_run_id == "550e8400-e29b-41d4-a716-446655440000"
+        assert response.success_rate is None
