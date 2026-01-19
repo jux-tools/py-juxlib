@@ -30,7 +30,7 @@ py-juxlib extracts and consolidates shared functionality from `pytest-jux` that 
 - **Current Sprint**: Sprint 3 (see `docs/sprints/sprint-03-plan.md`)
 - **Sprint Goal**: API client and pytest-jux/behave-jux integration
 - **Status**: 📋 Planning
-- **Latest Release**: v0.2.0
+- **Latest Release**: v0.2.1
 - **Next Milestone**: v0.3.0
 
 ## Foundational ADRs
