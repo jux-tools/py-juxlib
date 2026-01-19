@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-01-19
+
+### Changed
+
+- **BREAKING**: Remove backward compatibility `test_run` property from `PublishResponse`
+  - Removed `TestRunRef` class
+  - All client code should use `response.test_run_id` directly instead of `response.test_run.id`
+  - This is acceptable during 0.x alpha phase
+
 ## [0.2.0] - 2026-01-18
 
 ### Added
@@ -88,6 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Unit Tests**: 122 total
 - **Test Coverage**: 87%
 
-[Unreleased]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/jrjsmrtn/py-juxlib/releases/tag/v0.1.0
