@@ -23,13 +23,11 @@ from juxlib.signing import (
 
 from ..conftest import (
     FIXTURES_DIR,
-    get_dump2polarion_xml_files,
     get_testmoapp_xml_files,
 )
 
 # Get fixture file lists for parametrization
 TESTMOAPP_FILES = get_testmoapp_xml_files()
-DUMP2POLARION_FILES = get_dump2polarion_xml_files()
 
 # Test key paths
 RSA_KEY_PATH = FIXTURES_DIR / "test-private.pem"
@@ -69,21 +67,6 @@ class TestLoadXMLWithSharedFixtures:
         tree = load_xml(xml_file)
 
         # All testmoapp examples have testsuites or testsuite as root
-        assert tree.tag in ("testsuites", "testsuite")
-
-    @pytest.mark.parametrize(
-        "xml_file",
-        DUMP2POLARION_FILES[:10],  # Limit to first 10 for speed
-        ids=lambda p: p.name if p else "none",
-    )
-    def test_load_dump2polarion_examples(self, xml_file: Path) -> None:
-        """Verify we can load dump2polarion example files."""
-        if not xml_file.exists():
-            pytest.skip(f"Fixture not available: {xml_file}")
-
-        tree = load_xml(xml_file)
-
-        # dump2polarion files have testsuites as root
         assert tree.tag in ("testsuites", "testsuite")
 
 

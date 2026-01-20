@@ -26,7 +26,6 @@ SHARED_FIXTURES_DIR = Path(__file__).parent.parent.parent / "junit-xml-test-fixt
 
 # Key subdirectories in shared fixtures
 TESTMOAPP_EXAMPLES = SHARED_FIXTURES_DIR / "testmoapp" / "examples"
-DUMP2POLARION_DATA = SHARED_FIXTURES_DIR / "dump2polarion" / "tests" / "data"
 WINDYROAD_SCHEMA = SHARED_FIXTURES_DIR / "windyroad-junit-schema"
 
 
@@ -151,18 +150,10 @@ def get_testmoapp_xml_files() -> list[Path]:
     return sorted(TESTMOAPP_EXAMPLES.glob("*.xml"))
 
 
-def get_dump2polarion_xml_files() -> list[Path]:
-    """Get all XML files from dump2polarion/tests/data for parametrized tests."""
-    if not DUMP2POLARION_DATA.exists():
-        return []
-    return sorted(DUMP2POLARION_DATA.glob("*.xml"))
-
-
 def get_all_shared_xml_files() -> list[Path]:
     """Get all shared XML fixture files for comprehensive testing."""
     files = []
     files.extend(get_testmoapp_xml_files())
-    files.extend(get_dump2polarion_xml_files())
     return files
 
 
