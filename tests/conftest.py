@@ -25,7 +25,6 @@ FIXTURES_DIR = Path(__file__).parent / "fixtures"
 SHARED_FIXTURES_DIR = Path(__file__).parent.parent.parent / "junit-xml-test-fixtures"
 
 # Key subdirectories in shared fixtures
-TESTMOAPP_EXAMPLES = SHARED_FIXTURES_DIR / "testmoapp" / "examples"
 WINDYROAD_SCHEMA = SHARED_FIXTURES_DIR / "windyroad-junit-schema"
 
 
@@ -84,7 +83,7 @@ def sample_xml_content(sample_xml_path: Path) -> str:
 @pytest.fixture
 def shared_fixtures_available() -> bool:
     """Check if shared junit-xml-test-fixtures repository is available."""
-    return SHARED_FIXTURES_DIR.exists() and TESTMOAPP_EXAMPLES.exists()
+    return SHARED_FIXTURES_DIR.exists()
 
 
 @pytest.fixture
@@ -97,64 +96,6 @@ def shared_fixtures_dir() -> Path:
     if not SHARED_FIXTURES_DIR.exists():
         pytest.skip("Shared junit-xml-test-fixtures not available")
     return SHARED_FIXTURES_DIR
-
-
-@pytest.fixture
-def testmoapp_examples_dir(shared_fixtures_dir: Path) -> Path:
-    """Path to testmoapp/examples directory with reference JUnit XML files."""
-    examples_dir = shared_fixtures_dir / "testmoapp" / "examples"
-    if not examples_dir.exists():
-        pytest.skip("testmoapp/examples not available")
-    return examples_dir
-
-
-@pytest.fixture
-def junit_basic_xml(testmoapp_examples_dir: Path) -> str:
-    """Content of junit-basic.xml - basic JUnit XML structure."""
-    return (testmoapp_examples_dir / "junit-basic.xml").read_text()
-
-
-@pytest.fixture
-def junit_complete_xml(testmoapp_examples_dir: Path) -> str:
-    """Content of junit-complete.xml - complete JUnit XML with all features."""
-    return (testmoapp_examples_dir / "junit-complete.xml").read_text()
-
-
-@pytest.fixture
-def junit_conventions_xml(testmoapp_examples_dir: Path) -> str:
-    """Content of conventions.xml - advanced conventions and patterns."""
-    return (testmoapp_examples_dir / "conventions.xml").read_text()
-
-
-@pytest.fixture
-def junit_testcase_properties_xml(testmoapp_examples_dir: Path) -> str:
-    """Content of testcase-properties.xml - property patterns."""
-    return (testmoapp_examples_dir / "testcase-properties.xml").read_text()
-
-
-@pytest.fixture
-def junit_testcase_output_xml(testmoapp_examples_dir: Path) -> str:
-    """Content of testcase-output.xml - output capture patterns."""
-    return (testmoapp_examples_dir / "testcase-output.xml").read_text()
-
-
-# =============================================================================
-# Parametrized Fixture Helpers
-# =============================================================================
-
-
-def get_testmoapp_xml_files() -> list[Path]:
-    """Get all XML files from testmoapp/examples for parametrized tests."""
-    if not TESTMOAPP_EXAMPLES.exists():
-        return []
-    return sorted(TESTMOAPP_EXAMPLES.glob("*.xml"))
-
-
-def get_all_shared_xml_files() -> list[Path]:
-    """Get all shared XML fixture files for comprehensive testing."""
-    files = []
-    files.extend(get_testmoapp_xml_files())
-    return files
 
 
 # =============================================================================
