@@ -177,9 +177,11 @@ dev = [
 |---------|--------------|
 | `pytest-jux` | Source of extracted code, primary consumer |
 | `behave-jux` | Secondary consumer, will migrate to use juxlib |
-| `jux-openapi` | API contract (OpenAPI 3.0 specification) |
+| `jux-openapi` | **Source of truth** for API contract (OpenAPI 3.0 specification) |
 | `jux` | Server that receives published reports |
 | `junit-xml-test-fixtures` | Shared test data |
+
+> **API Compliance**: py-juxlib v0.2.0+ is compliant with jux-openapi API v1.0.0.
 
 ## Git Configuration
 

@@ -107,6 +107,14 @@ uv run ruff check .
 uv run mypy src/juxlib
 ```
 
+## API Specification
+
+> **Source of Truth**: The canonical API specifications live in **[jux-openapi](https://github.com/jrjsmrtn/jux-openapi)**.
+> - OpenAPI specs: `jux-openapi/specs/v1/`
+> - API changelog: `jux-openapi/docs/CHANGELOG.md`
+
+py-juxlib v0.2.0+ is compliant with jux-openapi API v1.0.0.
+
 ## Related Projects
 
 | Project | Description |
@@ -114,6 +122,7 @@ uv run mypy src/juxlib
 | [pytest-jux](https://github.com/jrjsmrtn/pytest-jux) | pytest plugin for signing and publishing JUnit XML |
 | [behave-jux](https://github.com/jrjsmrtn/behave-jux) | Enhanced JUnit reporter for behave BDD |
 | [jux](https://github.com/jrjsmrtn/jux) | Server for receiving and analyzing test reports |
+| [jux-openapi](https://github.com/jrjsmrtn/jux-openapi) | API contract specification (source of truth) |
 
 ## License
 
