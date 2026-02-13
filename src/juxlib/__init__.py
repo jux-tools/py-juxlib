@@ -28,9 +28,12 @@ Example usage:
     >>> response = client.publish_report(signed_xml)
 """
 
-__version__ = "0.3.0"
-__author__ = "Georges Martin"
-__email__ = "jrjsmrtn@gmail.com"
+from importlib.metadata import metadata
+
+_meta = metadata("py-juxlib")
+__version__ = _meta["Version"]
+__author__ = _meta["Author-email"].split("<")[0].strip()
+__email__ = _meta["Author-email"].split("<")[1].rstrip(">")
 
 # Public API will be populated as modules are implemented
 __all__ = [
