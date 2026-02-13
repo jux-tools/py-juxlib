@@ -7,6 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-02-13
+
+### Added
+
+- SECURITY.md vulnerability disclosure policy
+- GitHub Actions workflows: test, security, build-release
+- Dependabot configuration for automated dependency updates
+- PyPI Trusted Publishing via GitHub Actions OIDC
+
+### Changed
+
+- Migrated GitHub repository to jux-tools organization
+
 ## [0.3.0] - 2026-02-12
 
 ### Added
