@@ -3,14 +3,16 @@
 
 """Basic tests to verify package structure."""
 
+from importlib.metadata import version
+
 import juxlib
 
 
-def test_version_exists() -> None:
-    """Verify package version is defined."""
+def test_version_matches_metadata() -> None:
+    """Package __version__ should match installed metadata (from pyproject.toml)."""
     assert hasattr(juxlib, "__version__")
     assert isinstance(juxlib.__version__, str)
-    assert juxlib.__version__ == "0.3.0"
+    assert juxlib.__version__ == version("py-juxlib")
 
 
 def test_author_exists() -> None:
