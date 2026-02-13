@@ -7,7 +7,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "py-juxlib"
-version = "0.3.0"
+version = "0.3.1"
 description = "Shared Python library for Jux tools ecosystem"
 readme = "README.md"
 license = "Apache-2.0"
@@ -60,11 +60,11 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/jrjsmrtn/py-juxlib"
-Documentation = "https://github.com/jrjsmrtn/py-juxlib#readme"
-Repository = "https://github.com/jrjsmrtn/py-juxlib.git"
-Issues = "https://github.com/jrjsmrtn/py-juxlib/issues"
-Changelog = "https://github.com/jrjsmrtn/py-juxlib/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/jux-tools/py-juxlib"
+Documentation = "https://github.com/jux-tools/py-juxlib#readme"
+Repository = "https://github.com/jux-tools/py-juxlib.git"
+Issues = "https://github.com/jux-tools/py-juxlib/issues"
+Changelog = "https://github.com/jux-tools/py-juxlib/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.sdist]
 include = [
