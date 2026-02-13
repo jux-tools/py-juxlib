@@ -7,6 +7,41 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-02-12
+
+### Added
+
+- **juxlib.api** - HTTP client for Jux REST API v1.0.0
+  - `JuxAPIClient` class with configurable base URL, timeout, and max retries
+  - Bearer token authentication for remote servers
+  - Localhost bypass (no auth for 127.0.0.1, ::1, localhost)
+  - `publish_report()` method for POSTing signed JUnit XML
+  - Exponential backoff retry (1s, 2s, 4s) on server errors (500, 502, 503, 504)
+  - Connection pooling with `requests.Session` management
+  - Context manager support for automatic resource cleanup
+  - Pydantic models: `TestRun` (query response), `PublishResponse` (submit response)
+  - Enhanced error messages with server response details
+  - 22 unit tests, 98% coverage
+
+- **End-to-end integration tests** for sign → store → publish workflow (6 tests)
+  - RSA and ECDSA signing pipelines
+  - Offline queue → dequeue → publish workflow
+  - Signature verification after storage round-trip
+  - Hash deduplication across signing operations
+  - Storage statistics validation after pipeline operations
+
+### Fixed
+
+- Version mismatch between `__init__.py` and `pyproject.toml`
+
+### Technical Details
+
+- **Sprint**: 3
+- **Story Points**: 8 (Story 3.1) + 4 technical tasks
+- **New Tests**: 28 (22 unit + 6 integration)
+- **Total Tests**: 275
+- **Test Coverage**: 89%
+
 ## [0.2.1] - 2026-01-19
 
 ### Changed
@@ -97,7 +132,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Unit Tests**: 122 total
 - **Test Coverage**: 87%
 
-[Unreleased]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.2.1...HEAD
+[Unreleased]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.2.1...v0.3.0
 [0.2.1]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/jrjsmrtn/py-juxlib/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/jrjsmrtn/py-juxlib/releases/tag/v0.1.0

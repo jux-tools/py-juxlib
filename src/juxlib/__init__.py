@@ -28,7 +28,7 @@ Example usage:
     >>> response = client.publish_report(signed_xml)
 """
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 __author__ = "Georges Martin"
 __email__ = "jrjsmrtn@gmail.com"
 

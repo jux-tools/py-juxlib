@@ -2,7 +2,7 @@
 
 **Target Version**: v0.3.0
 **Duration**: 2026-02-15 - 2026-03-01 (2 weeks)
-**Status**: 📋 Planned
+**Status**: ✅ Completed
 
 ## Sprint Goal
 
@@ -81,9 +81,9 @@ Complete the API client module and validate full integration with pytest-jux and
 
 ## Technical Tasks
 
-- [ ] **Task 1**: End-to-end integration test (sign → store → publish) (2 pts)
-- [ ] **Task 2**: Update CHANGELOG.md with Sprint 3 changes (1 pt)
-- [ ] **Task 3**: Prepare v0.3.0 release notes (1 pt)
+- [x] **Task 1**: End-to-end integration test (sign → store → publish) (2 pts)
+- [x] **Task 2**: Update CHANGELOG.md with Sprint 3 changes (1 pt)
+- [x] **Task 3**: Prepare v0.3.0 release notes (1 pt)
 
 ## AI Collaboration Strategy
 
