@@ -25,16 +25,27 @@ class ConfigValidationError(Exception):
     """Raised when configuration validation fails."""
 
 
+def _is_macos() -> bool:
+    """Return True on macOS.
+
+    A function rather than an inline ``sys.platform`` check: mypy narrows on
+    ``sys.platform`` for the platform it runs on, so an inline check made the
+    other branch unreachable on one OS and its ``type: ignore`` unused on the
+    other.
+    """
+    return sys.platform == "darwin"
+
+
 def get_xdg_config_home() -> Path:
     """Get XDG config home directory.
 
     Returns:
         Path to config directory (~/.config on Linux, ~/Library/Application Support on macOS)
     """
-    if sys.platform == "darwin":
+    if _is_macos():
         return Path.home() / "Library" / "Application Support"
-    # Linux/other platforms - type: ignore needed because mypy sees darwin platform
-    xdg_config = os.environ.get("XDG_CONFIG_HOME")  # type: ignore[unreachable]
+    # Linux/other platforms
+    xdg_config = os.environ.get("XDG_CONFIG_HOME")
     if xdg_config:
         return Path(xdg_config)
     return Path.home() / ".config"
@@ -46,10 +57,10 @@ def get_xdg_data_home() -> Path:
     Returns:
         Path to data directory (~/.local/share on Linux, ~/Library/Application Support on macOS)
     """
-    if sys.platform == "darwin":
+    if _is_macos():
         return Path.home() / "Library" / "Application Support"
-    # Linux/other platforms - type: ignore needed because mypy sees darwin platform
-    xdg_data = os.environ.get("XDG_DATA_HOME")  # type: ignore[unreachable]
+    # Linux/other platforms
+    xdg_data = os.environ.get("XDG_DATA_HOME")
     if xdg_data:
         return Path(xdg_data)
     return Path.home() / ".local" / "share"
