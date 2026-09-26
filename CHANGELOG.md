@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- Type checking on Linux: the macOS check in `get_xdg_config_home` / `get_xdg_data_home` is now
+  a helper, so mypy no longer narrows on the platform it runs on. The inline check needed a
+  `type: ignore` on macOS that strict mypy rejected as unused on Linux, failing CI's type check
 - CI: track `uv.lock` and install with `uv sync --locked`, so CI runs the tool versions that were
   tested locally. An unpinned ruff 0.16 had been failing the format check on Python examples in
   two Markdown files, so the test suite had not run on GitHub since February; those examples are
