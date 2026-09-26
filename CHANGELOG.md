@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.4] - 2026-09-26
+
+### Fixed
+
+- CI: track `uv.lock` and install with `uv sync --locked`, so CI runs the tool versions that were
+  tested locally. An unpinned ruff 0.16 had been failing the format check on Python examples in
+  two Markdown files, so the test suite had not run on GitHub since February; those examples are
+  reformatted
+- Security Scanning: audit the locked dependency set instead of the runner's Python, which held
+  the toolchain's own packages and py-juxlib itself (not on PyPI at the version being built, so
+  `pip-audit --strict` could not pass)
+- Security Scanning: the SBOM job builds the SBOM from the locked runtime requirements and audits
+  that same file; it previously audited the runner's Python
+- Security Scanning: pin `aquasecurity/trivy-action` to v0.36.0 (Trivy v0.70.0), whose release
+  exists, and `ossf/scorecard-action` to v2.4.4, whose image is on ghcr.io — v2.4.0's gcr.io
+  image is refused
+
+### Security
+
+- CI: `persist-credentials: false` on every `actions/checkout` (zizmor `artipacked`)
+- Release workflow: disable `setup-uv` caching (zizmor `cache-poisoning`); reject any version that
+  is not `[v]X.Y.Z[-suffix]` before it reaches a step output that later scripts expand; upgrade
+  the SLSA generic generator to v2.1.0, kept referenced by tag as slsa-verifier requires
+- Refresh the lockfile (37 packages)
+
 ## [0.3.3] - 2026-09-26
 
 First release carrying the 0.3.2 security fix to PyPI.

@@ -64,10 +64,7 @@ with open("junit-report-signed.xml", "wb") as f:
 ```python
 from juxlib.api import JuxAPIClient
 
-client = JuxAPIClient(
-    api_url="https://jux.example.com",
-    bearer_token="your-token"
-)
+client = JuxAPIClient(api_url="https://jux.example.com", bearer_token="your-token")
 
 with open("junit-report-signed.xml") as f:
     response = client.publish_report(f.read())

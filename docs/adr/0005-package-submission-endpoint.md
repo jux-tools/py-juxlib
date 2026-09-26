@@ -55,7 +55,9 @@ class JuxAPIClient:
 Validate container size before sending:
 
 ```python
-def submit_package(self, jxz_content: bytes, max_size: int = 50_000_000) -> PublishResponse:
+def submit_package(
+    self, jxz_content: bytes, max_size: int = 50_000_000
+) -> PublishResponse:
     if len(jxz_content) > max_size:
         raise PackageTooLargeError(len(jxz_content), max_size)
     ...
@@ -78,8 +80,13 @@ Map server error responses to specific exceptions:
 class PackageError(JuxError):
     """Base for package submission errors."""
 
+
 class InvalidPackageError(PackageError): ...
+
+
 class PackageTooLargeError(PackageError): ...
+
+
 class PackageVerificationError(PackageError): ...
 ```
 
