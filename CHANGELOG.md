@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.2] - 2026-09-26
+
+### Security
+
+- Require `cryptography>=46.0.5` (was `>=42.0`) so an install can no longer resolve a version
+  affected by CVE-2026-26007 (GHSA-r6ph-v2qm-q3c2), a subgroup attack on SECT curves caused by
+  missing subgroup validation
+
 ## [0.3.1] - 2026-02-13
 
 ### Added

@@ -7,7 +7,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "py-juxlib"
-version = "0.3.1"
+version = "0.3.2"
 description = "Shared Python library for Jux tools ecosystem"
 readme = "README.md"
 license = "Apache-2.0"
@@ -38,7 +38,7 @@ classifiers = [
 ]
 dependencies = [
     "lxml>=5.0",
-    "cryptography>=42.0",
+    "cryptography>=46.0.5",
     "signxml>=4.0",
     "requests>=2.31",
     "pydantic>=2.0",

@@ -116,7 +116,7 @@ src/juxlib/
 ```toml
 [project.dependencies]
 lxml = ">=5.0"               # XML parsing and canonicalization
-cryptography = ">=42.0"      # RSA/ECDSA key handling
+cryptography = ">=46.0.5"    # RSA/ECDSA key handling
 signxml = ">=4.0"            # XMLDSig signing/verification
 requests = ">=2.31"          # HTTP client
 pydantic = ">=2.0"           # Data validation and models
