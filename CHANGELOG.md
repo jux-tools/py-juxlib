@@ -7,7 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.3.3] - 2026-09-26
+
+First release carrying the 0.3.2 security fix to PyPI.
+
+### Fixed
+
+- Release workflow: pin `pypa/gh-action-pypi-publish` to v1.14.2 (was an older `release/v1`
+  commit). Current hatchling writes `Metadata-Version: 2.5`, which the older action's twine
+  rejected, so the 0.3.2 upload failed and nothing was published
+
 ## [0.3.2] - 2026-09-26
+
+Tagged but never published to PyPI; see 0.3.3.
 
 ### Security
 
